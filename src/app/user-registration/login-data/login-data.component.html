@@ -1,0 +1,47 @@
+<mat-card class="login-card">
+  <div class="row m-0">
+    <img src="assets/svgs/Universität_Zürich_logo.svg" class="w-50 m-auto">
+  </div>
+  <div class="row m-0 pb-4">
+      <span class="login-header-text">
+        User Registration
+      </span>
+  </div>
+  <form [formGroup]="form">
+    <div class="row m-0">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          <fa-icon matPrefix class="mr-1" [icon]="envelopeIcon"></fa-icon>
+          Email
+        </mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+    </div>
+    <div class="row m-0">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          <fa-icon matPrefix class="mr-1" [icon]="keyIcon"></fa-icon>
+          Password
+        </mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div class="row m-0">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          <fa-icon matPrefix class="mr-1" [icon]="keyIcon"></fa-icon>
+          Repeat Password
+        </mat-label>
+        <input matInput type="password" formControlName="repeatPassword">
+      </mat-form-field>
+    </div>
+    <div class="row m-0 pt-4 pb-4 justify-content-end">
+      <button mat-flat-button
+              color="primary"
+              [disabled]="form.invalid"
+              (click)="next()">
+        Next
+      </button>
+    </div>
+  </form>
+</mat-card>

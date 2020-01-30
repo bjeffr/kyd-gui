@@ -30,3 +30,61 @@ $kyd-gui-theme: mat-light-theme($kyd-gui-primary, $kyd-gui-accent, $kyd-gui-warn
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.country-selector {
+  position: relative !important;
+  height: fit-content !important;
+  z-index: auto;
+}
+
+.mat-menu-panel {
+  max-width: 505px !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.login-header-text {
+  margin: auto;
+  font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
+  font-size: 24px;
+  color: #202124;
+}
+
+.login-card {
+  max-width: 448px;
+  margin: 200px auto auto;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  box-shadow: none !important;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 7px !important;
+  border-color: #e1e1e1;
+}
+
+.login-card-title {
+
+  background-color: white;
+  width: fit-content;
+  //margin-top: -30px !important;
+  margin-left: 11px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: 'Lato', sans-serif;
+  font-size: large;
+  font-weight: 600;
+  color: #3f4b69;
+}
+
+.mat-flat-button {
+  min-width: 88px !important;
+}
+
