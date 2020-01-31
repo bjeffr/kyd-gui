@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
-import {matchingPasswordValidator} from '../validators/matching-password.validator';
+import {matchingPasswordValidator} from './components/login-data/validators/matching-password.validator';
 
 @Component({
   selector: 'app-user-registration',
@@ -11,7 +11,7 @@ import {matchingPasswordValidator} from '../validators/matching-password.validat
 export class UserRegistrationComponent implements OnInit {
 
   private user: FormGroup;
-  stage = 1;
+  stage = 0;
   addUserIcon = faUserPlus;
 
   constructor(private fb: FormBuilder) { }
@@ -19,7 +19,7 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit() {
     this.user = this.fb.group({
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      password: [null, Validators.required],
+      password: [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       street: [null, Validators.required],

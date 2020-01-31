@@ -33,10 +33,14 @@
               }
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+              "node_modules/intl-tel-input/build/js/utils.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -12,19 +11,62 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$kyd-gui-primary: mat-palette($mat-indigo);
-$kyd-gui-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$kyd-gui-warn: mat-palette($mat-red);
+$kyd-gui-primary: mat-palette((
+  50: #e0e5f4,
+  100: #b3bfe4,
+  200: #8094d2,
+  300: #4d69c0,
+  400: #2648b3,
+  500: #0028a5,
+  600: #00249d,
+  700: #001e93,
+  800: #00188a,
+  900: #000f79,
+  A100: #a7acff,
+  A200: #747bff,
+  A400: #414bff,
+  A700: #2733ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+));
+$kyd-gui-accent: mat-palette($mat-blue-grey);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$kyd-gui-theme: mat-light-theme($kyd-gui-primary, $kyd-gui-accent, $kyd-gui-warn);
+$kyd-gui-theme: mat-light-theme($kyd-gui-primary, $kyd-gui-accent);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($kyd-gui-theme);
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+$custom-typography: mat-typography-config(
+  $font-family: 'Raleway, sans-serif',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -37,10 +79,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined');
+
 .country-selector {
   position: relative !important;
   height: fit-content !important;
-  z-index: auto;
 }
 
 .mat-menu-panel {
@@ -49,20 +92,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 .mat-form-field {
   width: 100%;
+  padding: 0;
 }
 
-.login-header-text {
-  margin: auto;
-  font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
-  font-size: 24px;
-  color: #202124;
+.mat-error {
+  font-size: 12px;
+  margin-top: -25px;
 }
 
 .login-card {
-  max-width: 448px;
-  margin: 200px auto auto;
+  max-width: 500px;
+  margin: auto;
   padding-left: 40px !important;
   padding-right: 40px !important;
+  padding-bottom: 40px !important;
   box-shadow: none !important;
   border-style: solid;
   border-width: thin;
@@ -70,21 +113,10 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #e1e1e1;
 }
 
-.login-card-title {
-
-  background-color: white;
-  width: fit-content;
-  //margin-top: -30px !important;
-  margin-left: 11px;
-  padding-left: 40px;
-  padding-right: 40px;
-  font-family: 'Lato', sans-serif;
-  font-size: large;
-  font-weight: 600;
-  color: #3f4b69;
-}
-
 .mat-flat-button {
   min-width: 88px !important;
 }
 
+.password-strength {
+  @include angular-material-theme(mat-light-theme(mat-palette($mat-green), mat-palette($mat-amber)));
+}

@@ -1,0 +1,26 @@
+::ng-deep.mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix {
+  border-top-width: 5.5px;
+  padding-top: 14px !important;
+  padding-bottom: 10px !important;
+}
+
+::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.2em) scale(.75);
+  width: 133.33333%;
+}
+
+#country-input {
+  ::ng-deep.mat-form-field-suffix {
+    position: absolute !important;
+    left: 88.74%;
+    margin-top: 3px;
+  }
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 10px !important;
+}
+
+.mat-error {
+  margin-top: -14px;
+}

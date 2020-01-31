@@ -1,8 +1,19 @@
 <div class="container p-0 pt-3">
-  <app-login-data *ngIf="stage == 0"
-                  [user]="user"
-                  (continue)="stage = 1"></app-login-data>
-  <app-particulars *ngIf="stage == 1" [user]="user"></app-particulars>
+  <div style="height: 150px"></div>
+  <mat-card class="login-card">
+    <div class="row m-0">
+      <img src="assets/svgs/Universität_Zürich_logo.svg" class="w-50 m-auto">
+    </div>
+    <div class="row m-0 pt-4 pb-2">
+      <h3 class="m-auto">
+        User Registration
+      </h3>
+    </div>
+    <app-login-data *ngIf="stage == 0"
+                    [user]="user"
+                    (continue)="stage = 1"></app-login-data>
+    <app-particulars *ngIf="stage == 1" [user]="user"></app-particulars>
+  </mat-card>
 </div>
 
 
