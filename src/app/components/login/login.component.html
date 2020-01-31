@@ -1,0 +1,58 @@
+<div class="container p-0 pt-3">
+  <div style="height: 150px"></div>
+  <mat-card class="login-card">
+    <div class="row m-0">
+      <img src="assets/svgs/Universität_Zürich_logo.svg" class="w-50 m-auto">
+    </div>
+    <div class="row m-0 pt-4 pb-2">
+      <h3 class="m-auto">
+        Log in
+      </h3>
+    </div>
+    <div class="row m-0 pb-5">
+      <span class="small m-auto">
+        to continue to the KYD Platform
+      </span>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            <fa-icon matPrefix class="mr-1" [icon]="envelopeIcon"></fa-icon>
+            Email
+          </mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('email').touched && form.get('email').hasError('email')">
+          This email address is <strong>invalid</strong>.
+        </mat-error>
+      </div>
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            <fa-icon matPrefix class="mr-1" [icon]="keyIcon"></fa-icon>
+            Confirm Password
+          </mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon class="material-icons-outlined">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="row m-0 pt-4">
+        <div class="col-6 p-0">
+          <button mat-button
+                  class="p-0"
+                  color="primary"
+                  routerLink="/register">Create account</button>
+        </div>
+        <div class="col-6 p-0">
+          <button mat-flat-button
+                  class="float-right pl-4 pr-4"
+                  color="primary"
+                  type="submit">Log in</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

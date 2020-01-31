@@ -113,8 +113,12 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #e1e1e1;
 }
 
-.mat-flat-button {
-  min-width: 88px !important;
+.mat-button.mat-primary.mat-button .mat-button-focus-overlay {
+  background-color: transparent;
+}
+
+.mat-button.mat-primary.mat-button .mat-button-wrapper {
+  font-weight: bold !important;
 }
 
 .password-strength {

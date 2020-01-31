@@ -43,12 +43,14 @@ export class LoginDataComponent implements OnInit {
     });
   }
 
-  next() {
-    this.user.patchValue({
-      email: this.form.value.email,
-      password: this.form.value.password
-    });
-    this.continue.emit();
+  onSubmit() {
+    if (this.form.valid) {
+      this.user.patchValue({
+        email: this.form.value.email,
+        password: this.form.value.password
+      });
+      this.continue.emit();
+    }
   }
 
 }

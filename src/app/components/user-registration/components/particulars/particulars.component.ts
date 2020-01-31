@@ -12,6 +12,7 @@ export class ParticularsComponent implements OnInit {
 
   @Input() user: FormGroup;
   @Output() continue: EventEmitter<null> = new EventEmitter();
+  @Output() back: EventEmitter<null> = new EventEmitter();
   form: FormGroup;
   addressCardIcon = faAddressCard;
   addressIcon = faMapMarkerAlt;
@@ -48,18 +49,20 @@ export class ParticularsComponent implements OnInit {
     }
   }
 
-  next() {
-    this.user.patchValue({
-      firstName: this.form.value.firstName,
-      lastName: this.form.value.lastName,
-      birthDate: this.form.value.birthDate,
-      street: this.form.value.street,
-      houseNumber: this.form.value.houseNumber,
-      postalCode: this.form.value.postalCode,
-      city: this.form.value.city,
-      country: this.form.value.country,
-      mobileNumber: this.form.value.mobileNumber,
-    });
-    this.continue.emit();
+  onSubmit() {
+    if (this.form.valid) {
+      this.user.patchValue({
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        birthDate: this.form.value.birthDate,
+        street: this.form.value.street,
+        houseNumber: this.form.value.houseNumber,
+        postalCode: this.form.value.postalCode,
+        city: this.form.value.city,
+        country: this.form.value.country,
+        mobileNumber: this.form.value.mobileNumber,
+      });
+      this.continue.emit();
+    }
   }
 }

@@ -3,7 +3,7 @@
         Enter your particulars to continue to the KYD Platform
       </span>
 </div>
-<form [formGroup]="user">
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
   <div class="row m-0">
     <mat-form-field appearance="outline" class="col-6 pr-3">
       <mat-label>
@@ -79,12 +79,18 @@
       This phone number is <strong>invalid</strong>.
     </mat-error>
   </div>
-  <div class="row m-0 pt-4 justify-content-end">
-    <button mat-flat-button
-            color="primary"
-            [disabled]="form.invalid"
-            (click)="next()">
-      Next
-    </button>
+  <div class="row m-0 pt-4">
+    <div class="col-6 p-0">
+      <button mat-button
+              id="back-button"
+              color="primary"
+              (click)="back.emit()">Back</button>
+    </div>
+    <div class="col-6 p-0">
+      <button mat-flat-button
+              class="float-right pl-4 pr-4"
+              color="primary"
+              type="submit">Next</button>
+    </div>
   </div>
 </form>

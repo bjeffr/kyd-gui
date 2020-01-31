@@ -3,7 +3,7 @@
         Enter log-in information to continue to the KYD Platform
       </span>
 </div>
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row m-0">
     <mat-form-field appearance="outline">
       <mat-label>
@@ -55,10 +55,18 @@
       The passwords do not match.
     </mat-error>
   </div>
-  <div class="row m-0 pt-4 justify-content-end">
-    <button mat-flat-button
-            color="primary"
-            [disabled]="form.invalid"
-            (click)="next()">Next</button>
+  <div class="row m-0 pt-4">
+    <div class="col-6 p-0">
+      <button mat-button
+              class="p-0"
+              color="primary"
+              routerLink="/login">Sign in instead</button>
+    </div>
+    <div class="col-6 p-0">
+      <button mat-flat-button
+              class="float-right pl-4 pr-4"
+              color="primary"
+              type="submit">Next</button>
+    </div>
   </div>
 </form>

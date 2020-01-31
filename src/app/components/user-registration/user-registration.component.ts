@@ -11,7 +11,7 @@ import {matchingPasswordValidator} from './components/login-data/validators/matc
 export class UserRegistrationComponent implements OnInit {
 
   private user: FormGroup;
-  stage = 0;
+  stage = 1;
   addUserIcon = faUserPlus;
 
   constructor(private fb: FormBuilder) { }
