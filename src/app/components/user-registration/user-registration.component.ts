@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
-import {matchingPasswordValidator} from './components/login-data/validators/matching-password.validator';
+import {matchingPasswordValidator} from '../../validators/matching-password.validator';
 
 @Component({
   selector: 'app-user-registration',

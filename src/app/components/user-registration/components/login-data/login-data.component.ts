@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {faEnvelope, faKey} from '@fortawesome/free-solid-svg-icons';
-import {matchingPasswordValidator} from './validators/matching-password.validator';
+import {matchingPasswordValidator} from '../../../../validators/matching-password.validator';
 
 @Component({
   selector: 'app-login-data',
