@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {faEnvelope, faKey} from '@fortawesome/free-solid-svg-icons';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,17 +15,18 @@ export class LoginComponent implements OnInit {
   keyIcon = faKey;
   hide = true;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authService: UserService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
+      username: [null, Validators.compose([Validators.required, Validators.email])],
       password: [null, Validators.compose([Validators.required])],
     });
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    this.authService.login(this.form).subscribe();
   }
 
 }

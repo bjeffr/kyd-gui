@@ -21,9 +21,9 @@
             <fa-icon matPrefix class="mr-1" [icon]="envelopeIcon"></fa-icon>
             Email
           </mat-label>
-          <input matInput type="email" formControlName="email">
+          <input matInput type="email" formControlName="username">
         </mat-form-field>
-        <mat-error *ngIf="form.get('email').touched && form.get('email').hasError('email')">
+        <mat-error *ngIf="form.get('username').touched && form.get('username').hasError('email')">
           This email address is <strong>invalid</strong>.
         </mat-error>
       </div>

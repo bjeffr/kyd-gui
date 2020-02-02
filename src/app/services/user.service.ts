@@ -2,25 +2,36 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {shareReplay, tap} from 'rxjs/operators';
 import * as moment from 'moment';
+import {FormGroup} from '@angular/forms';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string ) {
-    return this.http.post<any>('/api/login', {email, password})
+  create(user: FormGroup) {
+    console.log(user.value);
+    // return this.http.post('http://localhost:8000/register/user', user.value);
+    return this.http.post('http://puf.dev.eng.c-alm.ch/register/user', user.value);
+  }
+
+  login(user: FormGroup) {
+    // return this.http.post('http://localhost:8000/api/token/', user.value)
+    return this.http.post('http://puf.dev.eng.c-alm.ch/api/token/', user.value)
       .pipe(tap(res => this.setSession), shareReplay());
   }
 
   private setSession(authResult) {
+    console.log(authResult);
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('access_token', authResult.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+
+    console.log(localStorage);
   }
 
   logout() {
