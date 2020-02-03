@@ -16,11 +16,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { DeviceOverviewComponent } from './components/device-overview/device-overview.component';
+import {MatMenuModule} from '@angular/material';
 
-
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
 
 @NgModule({
   declarations: [
@@ -29,7 +27,8 @@ export function tokenGetter() {
     UserRegistrationComponent,
     ParticularsComponent,
     LoginDataComponent,
-    LoginComponent
+    LoginComponent,
+    DeviceOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -39,15 +38,18 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter,
-        whitelistedDomains: ['dev.eng.c-alm.ch']
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
+        },
+        whitelistedDomains: ['puf.dev.eng.c-alm.ch']
       }
     }),
     AngularMaterialModule,
     FontAwesomeModule,
     MatSelectCountryModule,
     Ng2TelInputModule,
-    MatPasswordStrengthModule
+    MatPasswordStrengthModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

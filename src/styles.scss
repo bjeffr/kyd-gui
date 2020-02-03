@@ -55,10 +55,7 @@ $kyd-gui-theme: mat-light-theme($kyd-gui-primary, $kyd-gui-accent);
 
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
-//@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
 $custom-typography: mat-typography-config(
-  //$font-family: 'Raleway, sans-serif',
   $font-family: 'Montserrat, sans-serif',
   $headline: mat-typography-level(32px, 48px, 700),
   $body-1: mat-typography-level(16px, 24px, 500)
@@ -81,7 +78,9 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined');
+.mat-toolbar {
+  height: fit-content !important;
+}
 
 .mat-form-field {
   width: 100%;
@@ -94,7 +93,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .login-card {
-  max-width: 525px;
+  max-width: 450px;
   margin: auto;
   padding-left: 40px !important;
   padding-right: 40px !important;
@@ -124,6 +123,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .mat-error {
     margin-top: -14px;
+  }
+
+  .borderless-button {
+    margin-left: -16px;
   }
 }
 

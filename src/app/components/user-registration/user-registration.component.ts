@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
-import {matchingPasswordValidator} from '../../validators/matching-password.validator';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -11,10 +12,12 @@ import {matchingPasswordValidator} from '../../validators/matching-password.vali
 export class UserRegistrationComponent implements OnInit {
 
   private user: FormGroup;
-  stage = 1;
-  addUserIcon = faUserPlus;
+  stage = 0;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private jwtHelperService: JwtHelperService,
+              private router: Router) { }
 
   ngOnInit() {
     this.user = this.fb.group({
@@ -22,11 +25,10 @@ export class UserRegistrationComponent implements OnInit {
       password: [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
+      birthDate: [null, Validators.required],
       street: [null, Validators.required],
-      houseNumber: [null, Validators.required],
       postalCode: [null, Validators.required],
       city: [null, Validators.required],
-      birthDate: [null, Validators.required],
       country: [null, Validators.required],
       mobileNumber: [null, Validators.required],
       idNumber: [null, Validators.required],
@@ -36,6 +38,14 @@ export class UserRegistrationComponent implements OnInit {
 
     this.user.valueChanges.subscribe(value => {
       console.log(value);
+    });
+  }
+
+  submitUser() {
+    this.userService.create(this.user).subscribe(() => {
+      if (!this.jwtHelperService.isTokenExpired(localStorage.getItem('access_token'))) {
+        this.router.navigate(['/home']);
+      }
     });
   }
 }

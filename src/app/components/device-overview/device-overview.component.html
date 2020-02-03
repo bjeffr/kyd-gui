@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <img src="assets/uzh_logo_e_neg_blau_gross.png" height="70">
+  <span class="flex-fill"></span>
+  <button mat-button [matMenuTriggerFor]="menu" style="font-size: 16px">
+    <fa-icon matPrefix class="mr-2" [icon]="userIcon"></fa-icon>Account
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+            (click)="userService.logout()"
+            routerLink="/login">Sign out</button>
+  </mat-menu>
+</mat-toolbar>

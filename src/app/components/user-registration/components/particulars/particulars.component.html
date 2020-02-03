@@ -1,5 +1,5 @@
 <div class="row m-0 pb-5">
-      <span class="small m-auto">
+      <span class="small text-center w-100">
         Enter your particulars to continue to the KYD Platform
       </span>
 </div>
@@ -31,16 +31,12 @@
     </mat-form-field>
   </div>
   <div class="row m-0 pt-4">
-    <mat-form-field appearance="outline" class="col-8 pr-3">
+    <mat-form-field appearance="outline">
       <mat-label>
         <fa-icon matPrefix class="mr-1" [icon]="addressIcon"></fa-icon>
         Street
       </mat-label>
       <input matInput formControlName="street">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>House Number</mat-label>
-      <input matInput formControlName="houseNumber">
     </mat-form-field>
   </div>
   <div class="row m-0">
@@ -82,7 +78,8 @@
   <div class="row m-0 pt-4">
     <div class="col-6 p-0">
       <button mat-button
-              id="back-button"
+              type="button"
+              class="borderless-button"
               color="primary"
               (click)="back.emit()">Back</button>
     </div>

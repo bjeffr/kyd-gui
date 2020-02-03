@@ -1,0 +1,74 @@
+<div class="container p-0 pt-3">
+  <div style="height: 50px"></div>
+  <mat-card class="login-card">
+    <div class="row m-0">
+      <img src="assets/svgs/Universität_Zürich_logo.svg" class="w-50 m-auto">
+    </div>
+    <div class="row m-0 pt-4 pb-2">
+      <h3 class="m-auto">
+        Device Registration
+      </h3>
+    </div>
+    <div class="row m-0 pb-5">
+      <span class="small text-center w-75 m-auto">
+        Enter the details for your device to register it on the KYD Platform
+      </span>
+    </div>
+    <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Device Name
+          </mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Manufacturer
+          </mat-label>
+          <mat-select formControlName="make">
+            <mat-option value="Arduino">Arduino</mat-option>
+            <mat-option value="Raspberry Pi">Raspberry Pi</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Model
+          </mat-label>
+          <mat-select formControlName="model">
+            <mat-option *ngFor="let model of arduinoModels" [value]="model">
+              Arduino {{model}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row m-0">
+        <mat-form-field appearance="outline">
+          <mat-label>
+            SRAM Byte-Stream
+          </mat-label>
+          <input matInput formControlName="input">
+        </mat-form-field>
+      </div>
+      <div class="row m-0 pt-4">
+        <div class="col-6 p-0">
+          <button mat-button
+                  type="button"
+                  class="borderless-button"
+                  color="primary"
+                  (click)="back.emit()">Cancel</button>
+        </div>
+        <div class="col-6 p-0">
+          <button mat-flat-button
+                  class="float-right pl-4 pr-4"
+                  color="primary"
+                  type="submit">Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

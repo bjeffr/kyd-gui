@@ -2,16 +2,16 @@
   <div style="height: 50px"></div>
   <mat-card class="login-card">
     <div class="row m-0">
-      <img src="assets/svgs/Universität_Zürich_logo.svg" class="w-50 m-auto">
+      <img src="assets/Universität_Zürich_logo.svg" class="w-50 m-auto">
     </div>
     <div class="row m-0 pt-4 pb-2">
-      <h3 class="m-auto">
+      <h3 class="text-center w-100">
         User Registration
       </h3>
     </div>
     <app-login-data *ngIf="stage == 0"
                     [user]="user"
-                    (continue)="stage = 1"></app-login-data>
+                    (continue)="submitUser()"></app-login-data>
     <app-particulars *ngIf="stage == 1"
                      [user]="user"
                      (back)="stage = 0"></app-particulars>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {faEnvelope, faKey} from '@fortawesome/free-solid-svg-icons';
 import {UserService} from '../../services/user.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +18,24 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   constructor(private fb: FormBuilder,
-              private authService: UserService) { }
+              private userService: UserService,
+              private jwtHelperService: JwtHelperService,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      username: [null, Validators.compose([Validators.required, Validators.email])],
-      password: [null, Validators.compose([Validators.required])],
+      username: ['benjamin.jeffrey@uzh.ch', Validators.compose([Validators.required, Validators.email])],
+      password: ['12345qW$', Validators.compose([Validators.required])],
     });
   }
 
   onSubmit() {
-    this.authService.login(this.form).subscribe();
+    this.userService.login(this.form).subscribe(() => {
+      this.router.navigate(['']);
+    });
   }
 
+  resetPassword() {
+    // ToDo Implement
+  }
 }
