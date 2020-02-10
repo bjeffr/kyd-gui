@@ -44,7 +44,7 @@ export class UserRegistrationComponent implements OnInit {
   submitUser() {
     this.userService.create(this.user).subscribe(() => {
       if (!this.jwtHelperService.isTokenExpired(localStorage.getItem('access_token'))) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       }
     });
   }

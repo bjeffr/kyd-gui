@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeviceService} from '../../services/device.service';
+import {Router} from '@angular/router';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-device-registration',
@@ -10,11 +13,14 @@ import {DeviceService} from '../../services/device.service';
 export class DeviceRegistrationComponent implements OnInit {
 
   private device: FormGroup;
+  private userIcon = faUser;
   private arduinoModels = ['Uno WiFi', 'MKR1000', 'MKR Zero', '101', 'Zero', 'Due', 'Yún', 'Leonardo', 'Uno', 'Mega2560', 'Ethernet', 'Fio',
     'Nano', 'LilyPad', 'Pro', 'Mega ADK', 'Esplora', 'Micro', 'Pro Mini'];
 
   constructor(private fb: FormBuilder,
-              private deviceService: DeviceService) { }
+              private deviceService: DeviceService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
     this.device = this.fb.group({
@@ -33,8 +39,8 @@ export class DeviceRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.deviceService.register(this.device).subscribe(value => {
-      console.log(value);
+    this.deviceService.register(this.device).subscribe(() => {
+      this.router.navigate(['']);
     });
   }
 

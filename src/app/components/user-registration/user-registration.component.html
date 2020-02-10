@@ -11,9 +11,10 @@
     </div>
     <app-login-data *ngIf="stage == 0"
                     [user]="user"
-                    (continue)="submitUser()"></app-login-data>
+                    (continue)="stage = 1"></app-login-data>
     <app-particulars *ngIf="stage == 1"
                      [user]="user"
-                     (back)="stage = 0"></app-particulars>
+                     (back)="stage = 0"
+                     (continue)="submitUser()"></app-particulars>
   </mat-card>
 </div>

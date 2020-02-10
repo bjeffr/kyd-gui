@@ -13,15 +13,19 @@ import {UserService} from '../../services/user.service';
 export class DeviceOverviewComponent implements OnInit {
 
   devices: Array<Device>;
-  userIcon = faUser
+  userIcon = faUser;
 
   constructor(private deviceService: DeviceService,
               private userService: UserService) { }
 
   ngOnInit() {
+    this.updateDevices();
+  }
+
+  updateDevices() {
     this.deviceService.getAll().subscribe(value => {
       this.devices = value;
-      console.log(this.devices);
+      console.log(value);
     });
   }
 }

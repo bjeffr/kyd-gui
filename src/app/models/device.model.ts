@@ -1,6 +1,6 @@
 export class Device {
   id: number;
-  user: number;
-  pufKey: string;
-  feHelper: string;
+  name: string;
+  make: string;
+  model: string;
 }

@@ -36,7 +36,7 @@ export class ParticularsComponent implements OnInit {
   }
 
   setCountry(country: Country) {
-    this.form.get('country').setValue(country.name);
+    this.form.get('country').setValue(country.alpha3Code);
   }
 
   setMobileNumber(mobileNumber: string) {

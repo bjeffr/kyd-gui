@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {first, single, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 import {FormGroup} from '@angular/forms';
 import {SimpleJwt} from '../models/simple-jwt.model';
 import {JwtHelperService} from '@auth0/angular-jwt';
@@ -16,7 +16,7 @@ export class UserService {
 
   create(user: FormGroup) {
     console.log(user.value);
-    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/register/user', user.value).pipe(
+    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/users', user.value).pipe(
       tap(data => {
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   login(user: FormGroup) {
-    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/api/token/', user.value).pipe(
+    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/users/login', user.value).pipe(
       tap(data => {
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
@@ -37,7 +37,7 @@ export class UserService {
     const refresh = {
       refresh: localStorage.getItem('refresh_token')
     };
-    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/api/token/refresh/', refresh).pipe(
+    return this.http.post<SimpleJwt>('https://puf.dev.eng.c-alm.ch/users/refresh', refresh).pipe(
       tap(data => {
         localStorage.setItem('access_token', data.access);
       })
