@@ -25,9 +25,9 @@ export class DeviceRegistrationComponent implements OnInit {
   ngOnInit() {
     this.device = this.fb.group({
       name: [null, Validators.required],
-      make: ['Arduino', Validators.required],
-      model: ['Mega2560', Validators.required],
-      input: ['FFBDFF77EFDFEC6F55FF3672BBFD7EFB6D5FD776', Validators.compose([
+      make: [null, Validators.required],
+      model: [null, Validators.required],
+      input: [null, Validators.compose([
           Validators.required,
           Validators.minLength(40),
           Validators.maxLength(40),
