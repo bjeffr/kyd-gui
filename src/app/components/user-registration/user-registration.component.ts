@@ -21,19 +21,46 @@ export class UserRegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      email: [null, Validators.compose([
+        Validators.required,
+        Validators.email,
+        Validators.max(150)
+      ])],
+      password: [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30)
+      ])],
+      firstName: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(30)
+      ])],
+      lastName: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(150)
+      ])],
       birthDate: [null, Validators.required],
-      street: [null, Validators.required],
-      postalCode: [null, Validators.required],
-      city: [null, Validators.required],
-      country: [null, Validators.required],
-      mobileNumber: [null, Validators.required],
-      idNumber: [null, Validators.required],
-      idType: [null, Validators.required],
-      idScan: [null, Validators.required],
+      street: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(150)
+      ])],
+      postalCode: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(12)
+      ])],
+      city: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(150)
+      ])],
+      country: [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(3)
+      ])],
+      mobileNumber: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(20)
+      ])]
     });
 
     this.user.valueChanges.subscribe(value => {

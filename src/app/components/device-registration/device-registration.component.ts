@@ -29,8 +29,8 @@ export class DeviceRegistrationComponent implements OnInit {
       model: [null, Validators.required],
       input: [null, Validators.compose([
           Validators.required,
-          Validators.minLength(40),
-          Validators.maxLength(40),
+          Validators.minLength(64),
+          Validators.maxLength(64),
           Validators.pattern('^[A-Fa-f0-9]+$')
       ])],
     });

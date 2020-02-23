@@ -1,5 +1,5 @@
 <div class="container p-0 pt-3">
-  <div style="height: 150px"></div>
+  <div style="height: 50px"></div>
   <mat-card class="login-card">
     <div class="row m-0">
       <img src="assets/Universität_Zürich_logo.svg" class="w-50 m-auto">
@@ -31,7 +31,7 @@
         <mat-form-field appearance="outline">
           <mat-label>
             <fa-icon matPrefix class="mr-1" [icon]="keyIcon"></fa-icon>
-            Confirm Password
+            Password
           </mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
