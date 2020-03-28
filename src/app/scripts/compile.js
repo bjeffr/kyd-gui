@@ -29,15 +29,15 @@ const output = JSON.parse(solc.compile(JSON.stringify({
 const identityContract = output.contracts["Identity.sol"]["Identity"];
 
 // Ensures that the directory 'build' exists and removes any files if present.
-// const buildPath = path.resolve(__dirname, "../assets");
-// fs.removeSync(buildPath);
-// fs.ensureDirSync(buildPath);
+const buildPath = path.resolve(__dirname, "../contracts/build");
+fs.removeSync(buildPath);
+fs.ensureDirSync(buildPath);
 
 // Creates a JSON file with the identity contract. It will be used to create a contract instance from the Angular application.
-// fs.outputJsonSync(
-//   path.resolve(buildPath, "identity.json"),
-//   identityContract
-// );
+fs.outputJsonSync(
+  path.resolve(buildPath, "identity.json"),
+  identityContract
+);
 
 // Export the identity contract
 module.exports = identityContract;

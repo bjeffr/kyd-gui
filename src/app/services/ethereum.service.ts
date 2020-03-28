@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {WEB3} from '../web3';
 import Web3 from 'web3';
-import * as contract from '../contracts/identity.json';
+import * as contract from '../contracts/build/identity.json';
 
 @Injectable({
   providedIn: 'root'

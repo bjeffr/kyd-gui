@@ -4,7 +4,7 @@ const IdentityContract = require("./compile");
 
 // Creates a wallet provider to connect to the Rinkeby network.
 const provider = new HDWalletProvider(
-  "tonight casual upon very gallery weekend recipe point vault flight old spice",
+  "sadness artwork pave divert nephew victory spray famous lock weapon bird unusual",
   "https://rinkeby.infura.io/v3/056404dae4ee477e94351c46903b0ade"
 );
 

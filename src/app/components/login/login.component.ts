@@ -28,34 +28,14 @@ export class LoginComponent implements OnInit {
               private ethereumService: EthereumService) { }
 
   async ngOnInit() {
-    this.form = this.fb.group({
-      username: [null, Validators.compose([
-        Validators.required,
-        Validators.email,
-        Validators.max(150)
-      ])],
-      password: [null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(30)
-        ])],
-    });
+    if (this.web3.currentProvider) {
+      // @ts-ignore
+      await this.web3.currentProvider.enable();
+      await this.router.navigate(['']);
+    }
 
-    // @ts-ignore
-    await this.web3.currentProvider.enable();
 
     // const address = await this.ethereumService.addDevice(this.web3);
     // console.log(address);
-  }
-
-  onSubmit() {
-    this.userService.login(this.form).subscribe(() => {
-      this.router.navigate(['']);
-    });
-  }
-
-  resetPassword() {
-    // ToDo Implement
   }
 }

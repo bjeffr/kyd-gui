@@ -1,67 +1,26 @@
 <div class="container p-0 pt-3">
-  <div style="height: 50px"></div>
-  <mat-card class="login-card">
+  <mat-card id="card" class="login-card">
     <div class="row m-0">
-      <img src="assets/Universität_Zürich_logo.svg" class="w-50 m-auto">
+      <img src="assets/logo_uni_zurich.svg" class="w-75 m-auto pt-4">
     </div>
     <div class="row m-0 pt-4 pb-2">
       <h3 class="text-center w-100">
-        Sign in
+        KYD Platform
       </h3>
     </div>
     <div class="row m-0 pb-5">
       <span class="small text-center w-100">
-        to continue to the KYD Platform
+        To continue sign in with MetaMask.
       </span>
     </div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="row m-0">
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <fa-icon matPrefix class="mr-1" [icon]="envelopeIcon"></fa-icon>
-            Email
-          </mat-label>
-          <input matInput type="email" formControlName="username">
-        </mat-form-field>
-        <mat-error *ngIf="form.get('username').touched && form.get('username').hasError('email')">
-          This email address is <strong>invalid</strong>.
-        </mat-error>
-      </div>
-      <div class="row m-0">
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <fa-icon matPrefix class="mr-1" [icon]="keyIcon"></fa-icon>
-            Password
-          </mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon class="material-icons-outlined">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-      <div class="row m-0">
-        <button mat-button
-                type="button"
-                id="password-reset"
-                class="p-0"
-                color="primary"
-                (click)="resetPassword()">Forgot password?</button>
-      </div>
-      <div class="row m-0 pt-4">
-        <div class="col-6 p-0">
-          <button mat-button
-                  type="button"
-                  class="p-0"
-                  color="primary"
-                  routerLink="/register">Create account</button>
-        </div>
-        <div class="col-6 p-0">
-          <button mat-flat-button
-                  class="float-right pl-4 pr-4"
-                  color="primary"
-                  type="submit">Sign in</button>
-        </div>
-      </div>
-    </form>
+    <div class="row m-0">
+      <img src="assets/logo_metamask.svg" class="w-50 m-auto pt-3">
+    </div>
+    <div class="row pt-4 m-0">
+      <a mat-flat-button
+         color="primary"
+         class="m-auto"
+         href="https://metamask.io/download.html">Download</a>
+    </div>
   </mat-card>
 </div>
