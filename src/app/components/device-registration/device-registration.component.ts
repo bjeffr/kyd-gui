@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeviceService} from '../../services/device.service';
 import {Router} from '@angular/router';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
-import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-device-registration',
@@ -19,29 +18,20 @@ export class DeviceRegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private deviceService: DeviceService,
-              private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
     this.device = this.fb.group({
       name: [null, Validators.required],
       make: [null, Validators.required],
-      model: [null, Validators.required],
-      input: [null, Validators.compose([
-          Validators.required,
-          Validators.minLength(64),
-          Validators.maxLength(64),
-          Validators.pattern('^[A-Fa-f0-9]+$')
-      ])],
+      model: [null, Validators.required]
     });
 
     this.arduinoModels.sort(((a, b) => a < b ? -1 : 1));
   }
 
   onSubmit() {
-    this.deviceService.register(this.device).subscribe(() => {
-      this.router.navigate(['']);
-    });
+    this.deviceService.register(this.device);
   }
 
 }

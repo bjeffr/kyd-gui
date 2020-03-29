@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DeviceService} from '../../services/device.service';
 import {Device} from '../../models/device.model';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
-import {UserService} from '../../services/user.service';
-
 
 @Component({
   selector: 'app-device-overview',
@@ -13,19 +10,17 @@ import {UserService} from '../../services/user.service';
 export class DeviceOverviewComponent implements OnInit {
 
   devices: Array<Device>;
-  userIcon = faUser;
 
-  constructor(private deviceService: DeviceService,
-              private userService: UserService) { }
+  constructor(private deviceService: DeviceService) { }
 
   ngOnInit() {
     this.updateDevices();
   }
 
   updateDevices() {
-    this.deviceService.getAll().subscribe(value => {
-      this.devices = value;
-      console.log(value);
-    });
+    // this.deviceService.getAll().subscribe(value => {
+    //   this.devices = value;
+    //   console.log(value);
+    // });
   }
 }

@@ -1,14 +1,6 @@
 <mat-toolbar color="primary">
   <img src="assets/uzh_logo_e_neg_blau_gross.png" height="60">
-  <span class="flex-fill"></span>
-  <button mat-button [matMenuTriggerFor]="menu" style="font-size: 16px">
-    <fa-icon matPrefix class="mr-2" [icon]="userIcon"></fa-icon>Account
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item
-            (click)="userService.logout()"
-            routerLink="/login">Sign out</button>
-  </mat-menu>
+  <span class="flex-fill text-right">KYD Platform</span>
 </mat-toolbar>
 <div class="container p-3">
   <div *ngIf="!devices" class="row m-0 pt-5 pb-2">

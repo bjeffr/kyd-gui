@@ -17,6 +17,7 @@ export class UserGuard implements CanActivate {
     if (accounts.length === 0) {
       return this.router.createUrlTree(['/login']);
     } else {
+      console.log(accounts);
       return true;
     }
   }
