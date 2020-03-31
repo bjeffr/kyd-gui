@@ -1,45 +1,53 @@
-<mat-toolbar color="primary">
-  <img src="assets/uzh_logo_e_neg_blau_gross.png" height="60">
-  <span class="flex-fill text-right">KYD Platform</span>
-</mat-toolbar>
-<div class="container p-3">
-  <div *ngIf="!devices" class="row m-0 pt-5 pb-2">
-    <h3 class="text-center w-100 pt-5">
-      You have no registered devices!
+<div *ngIf="loading" class="container p-3">
+  <div class="row pb-5">
+    <h3 class="m-auto">
+      Retrieving devices
     </h3>
   </div>
-  <div *ngIf="devices" class="row m-0 pt-5 pb-2" id="title-row">
-    <div class="col-4 p-0 my-auto">
-      Name
-    </div>
-    <div class="col p-0 my-auto">
-      Model
+  <mat-spinner color="primary" class="m-auto"></mat-spinner>
+</div>
+<div *ngIf="!loading" class="container p-3">
+  <div *ngIf="devices">
+    <h3 class="pl-4 pb-2">
+      Registered Devices
+    </h3>
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0" *ngFor="let device of devices; let i = index">
+        <mat-expansion-panel-header>
+          <mat-panel-title id="expansion-header">
+            <div id="expansion-title" class="flex-fill">
+              {{device.name}}
+            </div>
+            <button mat-flat-button
+                    *ngIf="!device.claims"
+                    class="pl-4 pr-4 mr-3"
+                    color="primary"
+                    (click)="verify(device)">Verify device</button>
+            <div *ngIf="!device.claims" id="status-red" class=" ml-4 mr-4">
+              Unverified
+            </div>
+            <div *ngIf="device.claims" id="status-green" class="ml-4 mr-4">
+              Verified
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-device-details [device]="device"></app-device-details>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div *ngIf="!devices">
+    <div class="row m-0 pt-5 pb-2">
+      <h3 class="text-center w-100 pt-5">
+        You have no registered devices!
+      </h3>
     </div>
   </div>
-  <div *ngFor="let device of devices" class="row m-0 pt-2 pb-2" id="device-row">
-    <div class="col-4 p-0 my-auto">
-      {{device.name}}
-    </div>
-    <div class="col p-0 my-auto">
-      {{device.make}} {{device.model}}
-    </div>
-    <div class="col- p-0">
-      <button mat-button
-              class="p-0"
-              color="primary">Edit</button>
-    </div>
-  </div>
-  <div *ngIf="!devices" class="row m-0 pt-5 justify-content-center">
-    <button mat-flat-button
-            class="pl-4 pr-4"
-            color="primary"
-            routerLink="/device/register">Register new device</button>
-  </div>
-  <div *ngIf="devices" class="row m-0 pt-5 justify-content-end">
+  <div class="row m-0 pt-5 justify-content-center">
     <button mat-flat-button
             class="pl-4 pr-4"
             color="primary"
             routerLink="/device/register">Register new device</button>
   </div>
 </div>
+
 

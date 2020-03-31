@@ -14,36 +14,43 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DeviceOverviewComponent } from './components/device-overview/device-overview.component';
-import {MatMenuModule} from '@angular/material';
+import {MatExpansionModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
+import { DeviceDetailsComponent } from './components/device-details/device-details.component';
+import { DeviceVerificationComponent } from './components/device-verification/device-verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeviceRegistrationComponent,
     LoginComponent,
-    DeviceOverviewComponent
+    DeviceOverviewComponent,
+    DeviceDetailsComponent,
+    DeviceVerificationComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
-        whitelistedDomains: ['puf.dev.eng.c-alm.ch']
-      }
-    }),
-    AngularMaterialModule,
-    FontAwesomeModule,
-    MatSelectCountryModule,
-    Ng2TelInputModule,
-    MatPasswordStrengthModule,
-    MatMenuModule
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: () => {
+                    return localStorage.getItem('access_token');
+                },
+                whitelistedDomains: ['puf.dev.eng.c-alm.ch']
+            }
+        }),
+        AngularMaterialModule,
+        FontAwesomeModule,
+        MatSelectCountryModule,
+        Ng2TelInputModule,
+        MatPasswordStrengthModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatExpansionModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

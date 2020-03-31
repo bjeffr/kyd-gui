@@ -18,7 +18,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'device/register',
-    component: DeviceRegistrationComponent
+    component: DeviceRegistrationComponent,
+    canActivate: [UserGuard]
   }
 ];
 

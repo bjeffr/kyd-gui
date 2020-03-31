@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
+  etherScan: 'https://rinkeby.etherscan.io/address/',
   walletAddress: '0xFc869DE19bEfb3DC9d71b4b65ad602990AC2831d',
-  contractAddress: '0xAc409dd97A36A46da9d785e82Cc1eb7117979517'
+  contractAddress: '0xEd083e4c9155abF99D4d650134b114fF49603744'
 };
 
 /*

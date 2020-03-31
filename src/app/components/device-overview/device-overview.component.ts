@@ -10,17 +10,22 @@ import {Device} from '../../models/device.model';
 export class DeviceOverviewComponent implements OnInit {
 
   devices: Array<Device>;
+  loading = true;
 
   constructor(private deviceService: DeviceService) { }
 
-  ngOnInit() {
-    this.updateDevices();
+  async ngOnInit() {
+    // @ts-ignore
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload();
+    });
+
+    this.devices = await this.deviceService.getAll();
+
+    this.loading = false;
   }
 
-  updateDevices() {
-    // this.deviceService.getAll().subscribe(value => {
-    //   this.devices = value;
-    //   console.log(value);
-    // });
+  async verify(device: Device) {
+    await this.deviceService.verify(device);
   }
 }

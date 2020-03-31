@@ -1,13 +1,29 @@
-#title-row {
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-color: #cdcdcd;
-  font-weight: 600;
-  color: #0028A5;
+#expansion-header {
+  display: flex;
+  align-items: center;
 }
 
-#device-row {
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-color: #cdcdcd;
+#expansion-title {
+  font-size: 15pt;
+  font-weight: 600;
+}
+
+#status-green {
+  width: 100px;
+  background-color: #DFF0D8;
+  font-weight: 500;
+  color: #468847;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+#status-red {
+  width: 100px;
+  background-color: #F2DEDE;
+  font-weight: 500;
+  color: #B94A48;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px;
 }

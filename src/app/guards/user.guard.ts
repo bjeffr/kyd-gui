@@ -14,10 +14,9 @@ export class UserGuard implements CanActivate {
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     const accounts = await this.web3.eth.getAccounts();
 
-    if (accounts.length === 0) {
+    if (!accounts[0]) {
       return this.router.createUrlTree(['/login']);
     } else {
-      console.log(accounts);
       return true;
     }
   }

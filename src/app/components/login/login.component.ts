@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {EthereumService} from '../../services/ethereum.service';
 import {WEB3} from '../../web3';
 import Web3 from 'web3';
 
@@ -12,18 +11,13 @@ import Web3 from 'web3';
 export class LoginComponent implements OnInit {
 
   constructor(@Inject(WEB3) private web3: Web3,
-              private ethereumService: EthereumService,
               private router: Router) { }
 
   async ngOnInit() {
     if (this.web3.currentProvider) {
       // @ts-ignore
       await this.web3.currentProvider.enable();
-      await this.router.navigate(['']);
+      this.router.navigate(['']);
     }
-
-
-    // const address = await this.ethereumService.addDevice(this.web3);
-    // console.log(address);
   }
 }

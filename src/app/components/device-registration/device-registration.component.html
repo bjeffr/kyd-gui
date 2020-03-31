@@ -3,68 +3,84 @@
   <span class="flex-fill text-right">KYD Platform</span>
 </mat-toolbar>
 <div class="container p-0 pt-3">
-  <div style="height: 50px"></div>
   <mat-card class="login-card">
     <div class="row m-0">
       <img src="assets/logo_uni_zurich.svg" class="w-50 m-auto">
     </div>
-    <div class="row m-0 pt-4 pb-3">
-      <h3 class="m-auto">
-        Device Registration
-      </h3>
-    </div>
-    <div class="row m-0 pb-4">
-      <span class="small text-center w-75 m-auto">
-        To add a device, enter the following details. A Identity Smart Contract for the device will then be deployed to the Ethereum Network from your account.
-      </span>
-    </div>
-    <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
-      <div class="row m-0">
-        <mat-form-field appearance="outline">
-          <mat-label>
-            Device Name
-          </mat-label>
-          <input matInput formControlName="name">
-        </mat-form-field>
+    <div *ngIf="!deploying">
+      <div class="row m-0 pt-4 pb-3">
+        <h3 class="m-auto">
+          Device Registration
+        </h3>
       </div>
-      <div class="row m-0">
-        <mat-form-field appearance="outline">
-          <mat-label>
-            Manufacturer
-          </mat-label>
-          <mat-select formControlName="make">
-            <mat-option value="Arduino">Arduino</mat-option>
-            <mat-option value="Raspberry Pi">Raspberry Pi</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="row m-0 pb-4">
+        <span class="small text-center w-75 m-auto">
+          To add a device, enter the following details. A Identity Smart Contract for the device will then be deployed to the Ethereum Network from your account.
+        </span>
       </div>
-      <div class="row m-0">
-        <mat-form-field appearance="outline">
-          <mat-label>
-            Model
-          </mat-label>
-          <mat-select formControlName="model">
-            <mat-option *ngFor="let model of arduinoModels" [value]="model">
-              Arduino {{model}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="row m-0 pt-4">
-        <div class="col-6 p-0">
-          <button mat-button
-                  type="button"
-                  class="borderless-button"
-                  color="primary"
-                  routerLink="">Cancel</button>
+      <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Device Name
+            </mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
         </div>
-        <div class="col-6 p-0">
-          <button mat-flat-button
-                  class="float-right pl-4 pr-4"
-                  color="primary"
-                  type="submit">Next</button>
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Manufacturer
+            </mat-label>
+            <mat-select formControlName="make">
+              <mat-option value="Arduino">Arduino</mat-option>
+              <mat-option value="Raspberry Pi">Raspberry Pi</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Model
+            </mat-label>
+            <mat-select formControlName="model">
+              <mat-option *ngFor="let model of arduinoModels" [value]="model">
+                Arduino {{model}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row m-0 pt-4">
+          <div class="col-6 p-0">
+            <button mat-button
+                    type="button"
+                    class="borderless-button"
+                    color="primary"
+                    routerLink="">Cancel</button>
+          </div>
+          <div class="col-6 p-0">
+            <button mat-flat-button
+                    class="float-right pl-4 pr-4"
+                    color="primary"
+                    type="submit">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="deploying">
+      <div class="row m-0 pt-4 pb-3">
+        <h3 class="m-auto">
+          Deploying Contract
+        </h3>
       </div>
-    </form>
+      <div class="row m-0 pb-5">
+        <span class="small text-center w-75 m-auto">
+          This might take a couple of minutes.
+        </span>
+      </div>
+      <div class="row m-0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
   </mat-card>
 </div>

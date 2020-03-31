@@ -23,6 +23,10 @@ const deploy = async () => {
   const result = await new web3.eth.Contract(abi)
     .deploy({ data: bytecode })
     .send({ from: accounts[0], gas: 3000000 });
+
+  await result.methods.addKey(web3.utils.keccak256(result.options.address), 3, 1)
+    .send({ from: accounts[0], gas: 3000000 });
+
   console.log("Contract deployed to:", result.options.address);
 };
 
