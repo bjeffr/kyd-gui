@@ -1,23 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import { Observable } from 'rxjs';
-import {UserService} from '../services/user.service';
+import {WEB3} from '../web3';
+import Web3 from 'web3';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserGuard implements CanActivate {
 
-  constructor(private userService: UserService,
+  constructor(@Inject(WEB3) private web3: Web3,
               private router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userService.isLoggedIn()) {
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    const accounts = await this.web3.eth.getAccounts();
+
+    if (!accounts[0]) {
+      return this.router.createUrlTree(['/login']);
+    } else {
       return true;
     }
-    return this.router.createUrlTree(['/login']);
   }
-
 }

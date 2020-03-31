@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {faEnvelope, faKey} from '@fortawesome/free-solid-svg-icons';
-import {UserService} from '../../services/user.service';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {WEB3} from '../../web3';
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-login',
@@ -12,39 +10,14 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
-  envelopeIcon = faEnvelope;
-  keyIcon = faKey;
-  hide = true;
-
-  constructor(private fb: FormBuilder,
-              private userService: UserService,
-              private jwtHelperService: JwtHelperService,
+  constructor(@Inject(WEB3) private web3: Web3,
               private router: Router) { }
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      username: [null, Validators.compose([
-        Validators.required,
-        Validators.email,
-        Validators.max(150)
-      ])],
-      password: [null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(30)
-        ])],
-    });
-  }
-
-  onSubmit() {
-    this.userService.login(this.form).subscribe(() => {
+  async ngOnInit() {
+    if (this.web3.currentProvider) {
+      // @ts-ignore
+      await this.web3.currentProvider.enable();
       this.router.navigate(['']);
-    });
-  }
-
-  resetPassword() {
-    // ToDo Implement
+    }
   }
 }
