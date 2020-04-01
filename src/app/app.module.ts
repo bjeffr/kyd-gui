@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { DeviceRegistrationComponent } from './components/device-registration/device-registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,14 +8,17 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
 import { AngularMaterialModule } from './angular-material.module';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { DeviceOverviewComponent } from './components/device-overview/device-overview.component';
 import {MatExpansionModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
-import { DeviceDetailsComponent } from './components/device-details/device-details.component';
-import { DeviceVerificationComponent } from './components/device-verification/device-verification.component';
+import {DeviceRegistrationComponent} from './pages/device-registration/device-registration.component';
+import {LoginComponent} from './pages/login/login.component';
+import {DeviceOverviewComponent} from './pages/device-overview/device-overview.component';
+import {DeviceDetailsComponent} from './pages/device-overview/components/device-details/device-details.component';
+import {DeviceVerificationComponent} from './pages/device-verification/device-verification.component';
+import {UserRegistrationComponent} from './pages/user-registration/user-registration.component';
+import {ParticularsComponent} from './pages/user-registration/components/particulars/particulars.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { DeviceVerificationComponent } from './components/device-verification/de
     LoginComponent,
     DeviceOverviewComponent,
     DeviceDetailsComponent,
-    DeviceVerificationComponent
+    DeviceVerificationComponent,
+    UserRegistrationComponent,
+    ParticularsComponent
   ],
     imports: [
         BrowserModule,

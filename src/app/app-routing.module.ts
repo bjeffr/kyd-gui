@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
-import {DeviceOverviewComponent} from './components/device-overview/device-overview.component';
-import {DeviceRegistrationComponent} from './components/device-registration/device-registration.component';
 import {UserGuard} from './guards/user.guard';
+import {LoginComponent} from './pages/login/login.component';
+import {DeviceOverviewComponent} from './pages/device-overview/device-overview.component';
+import {DeviceRegistrationComponent} from './pages/device-registration/device-registration.component';
+import {UserRegistrationComponent} from './pages/user-registration/user-registration.component';
 
 
 const appRoutes: Routes = [
@@ -12,12 +13,17 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'users/register',
+    component: UserRegistrationComponent,
+    canActivate: [UserGuard]
+  },
+  {
     path: '',
     component: DeviceOverviewComponent,
     canActivate: [UserGuard]
   },
   {
-    path: 'device/register',
+    path: 'devices/register',
     component: DeviceRegistrationComponent,
     canActivate: [UserGuard]
   }

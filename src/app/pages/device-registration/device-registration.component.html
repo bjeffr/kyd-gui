@@ -1,20 +1,13 @@
-<mat-toolbar color="primary">
-  <img src="assets/uzh_logo_e_neg_blau_gross.png" height="60">
-  <span class="flex-fill text-right">KYD Platform</span>
-</mat-toolbar>
 <div class="container p-0 pt-3">
   <mat-card class="login-card">
-    <div class="row m-0">
-      <img src="assets/logo_uni_zurich.svg" class="w-50 m-auto">
-    </div>
     <div *ngIf="!deploying">
-      <div class="row m-0 pt-4 pb-3">
+      <div class="row m-0 pb-4">
         <h3 class="m-auto">
           Device Registration
         </h3>
       </div>
       <div class="row m-0 pb-4">
-        <span class="small text-center w-75 m-auto">
+        <span class="small text-center w-100">
           To add a device, enter the following details. A Identity Smart Contract for the device will then be deployed to the Ethereum Network from your account.
         </span>
       </div>
@@ -68,14 +61,14 @@
       </form>
     </div>
     <div *ngIf="deploying">
-      <div class="row m-0 pt-4 pb-3">
+      <div class="row m-0 pb-4">
         <h3 class="m-auto">
           Deploying Contract
         </h3>
       </div>
       <div class="row m-0 pb-5">
-        <span class="small text-center w-75 m-auto">
-          This might take a couple of minutes.
+        <span class="small text-center w-100">
+          This can take up to a minute.
         </span>
       </div>
       <div class="row m-0">

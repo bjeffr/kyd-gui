@@ -1,0 +1,122 @@
+<div class="container p-0 pt-3">
+  <mat-card class="login-card">
+    <div *ngIf="!deploying">
+      <div class="row m-0 pb-4">
+        <h3 class="text-center w-100">
+          User Registration
+        </h3>
+      </div>
+      <div class="row m-0 pb-4">
+      <span class="small text-center w-100">
+        To continue to the KYD Platform you need to register by entering the following details. An Identity Smart Contract for your user account will then be deployed to the Ethereum Network.
+      </span>
+      </div>
+      <form [formGroup]="user" (ngSubmit)="onSubmit()" class="slim-form-field">
+        <div class="row m-0">
+          <mat-form-field appearance="outline" class="col-6 pr-3">
+            <mat-label>
+              <fa-icon matPrefix class="mr-1" [icon]="addressCardIcon"></fa-icon>
+              First Name
+            </mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+        </div>
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>Birthdate</mat-label>
+            <input matInput
+                   [matDatepicker]="birthDatePicker"
+                   [max]="today"
+                   formControlName="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthDatePicker
+                            startView="multi-year">
+            </mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row m-0 pt-4">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              <fa-icon matPrefix class="mr-1" [icon]="addressIcon"></fa-icon>
+              Street
+            </mat-label>
+            <input matInput formControlName="street">
+          </mat-form-field>
+        </div>
+        <div class="row m-0">
+          <mat-form-field appearance="outline" class="col-4">
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-8 pl-3">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+          </mat-form-field>
+        </div>
+        <div class="row m-0">
+          <mat-select-country appearance="outline"
+                              id="country-input"
+                              class="w-100"
+                              (onCountrySelected)="setCountry($event)"
+                              label="Country">
+          </mat-select-country>
+        </div>
+        <div class="row m-0 pt-4">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              <fa-icon matPrefix class="mr-1" [icon]="envelopeIcon"></fa-icon>
+              Email
+            </mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+          <mat-error *ngIf="user.get('email').touched && user.get('email').hasError('email')">
+            This email address is <strong>invalid</strong>.
+          </mat-error>
+        </div>
+        <div class="row m-0">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>
+              <fa-icon matPrefix class="mr-1" [icon]="mobileIcon"></fa-icon>
+              Mobile Phone Number
+            </mat-label>
+            <input
+              matInput
+              ng2TelInput
+              formControlName="mobileNumber"
+              [ng2TelInputOptions]="{initialCountry: 'ch'}"
+              (ng2TelOutput)="setMobileNumber($event)"
+              (hasError)="mobileNumberError($event)">
+          </mat-form-field>
+          <mat-error *ngIf="!user.get('mobileNumber').valid && user.get('mobileNumber').dirty">
+            This phone number is <strong>invalid</strong>.
+          </mat-error>
+        </div>
+        <div class="row m-0 pt-4 justify-content-end">
+          <button mat-flat-button
+                  class="pl-4 pr-4"
+                  color="primary"
+                  type="submit">Next</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="deploying">
+      <div class="row m-0 pb-4">
+        <h3 class="m-auto">
+          Deploying Contract
+        </h3>
+      </div>
+      <div class="row m-0 pb-5">
+        <span class="small text-center w-100">
+          This can take up to a minute.
+        </span>
+      </div>
+      <div class="row m-0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+  </mat-card>
+</div>
