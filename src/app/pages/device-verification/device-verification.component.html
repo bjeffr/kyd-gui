@@ -1,1 +1,56 @@
-<p>device-verification works!</p>
+<div class="container p-0 pt-3">
+  <mat-card class="login-card">
+    <div *ngIf="!deploying">
+      <div class="row m-0 pb-4">
+        <h3 class="m-auto">
+          Device Verification
+        </h3>
+      </div>
+      <div class="row m-0 pb-4">
+        <span class="small text-center w-100">
+          To verify this device, enter the extracted PUF Data below. If your device is successfully verified, a KYD claim, signed by us, will be added to the device's smart contract.
+        </span>
+      </div>
+      <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              PUF Data
+            </mat-label>
+            <input matInput formControlName="pufData">
+          </mat-form-field>
+        </div>
+        <div class="row m-0 pt-4">
+          <div class="col-6 p-0">
+            <button mat-button
+                    type="button"
+                    class="borderless-button"
+                    color="primary"
+                    routerLink="">Cancel</button>
+          </div>
+          <div class="col-6 p-0">
+            <button mat-flat-button
+                    class="float-right pl-4 pr-4"
+                    color="primary"
+                    type="submit">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="deploying">
+      <div class="row m-0 pb-4">
+        <h3 class="m-auto">
+          Deploying Contract
+        </h3>
+      </div>
+      <div class="row m-0 pb-5">
+        <span class="small text-center w-100">
+          This can take up to a minute.
+        </span>
+      </div>
+      <div class="row m-0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+  </mat-card>
+</div>

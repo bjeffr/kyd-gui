@@ -11,8 +11,6 @@ import {Router} from '@angular/router';
 export class DeviceRegistrationComponent implements OnInit {
 
   private device: FormGroup;
-  private arduinoModels = ['Uno WiFi', 'MKR1000', 'MKR Zero', '101', 'Zero', 'Due', 'Yún', 'Leonardo', 'Uno', 'Mega2560', 'Ethernet', 'Fio',
-    'Nano', 'LilyPad', 'Pro', 'Mega ADK', 'Esplora', 'Micro', 'Pro Mini'];
   deploying = false;
 
   constructor(private fb: FormBuilder,
@@ -27,11 +25,11 @@ export class DeviceRegistrationComponent implements OnInit {
 
     this.device = this.fb.group({
       name: [null, Validators.required],
-      make: [null, Validators.required],
-      model: [null, Validators.required]
+      id: [null, Validators.compose([
+        Validators.required,
+        Validators.min(10),
+        Validators.max(10)])]
     });
-
-    this.arduinoModels.sort(((a, b) => a < b ? -1 : 1));
   }
 
   onSubmit() {

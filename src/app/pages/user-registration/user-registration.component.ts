@@ -80,5 +80,8 @@ export class UserRegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.user.value);
+    this.userService.register(this.user).subscribe(value => {
+      console.log(value);
+    });
   }
 }

@@ -12,26 +12,26 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $kyd-gui-primary: mat-palette((
-  50: #e0e5f4,
-  100: #b3bfe4,
-  200: #8094d2,
-  300: #4d69c0,
-  400: #2648b3,
-  500: #0028a5,
-  600: #00249d,
-  700: #001e93,
-  800: #00188a,
-  900: #000f79,
-  A100: #a7acff,
-  A200: #747bff,
-  A400: #414bff,
-  A700: #2733ff,
+  50 : #e0f3f3,
+  100 : #b3e0e2,
+  200 : #80cbce,
+  300 : #4db6ba,
+  400 : #26a7ac,
+  500 : #00979d,
+  600 : #008f95,
+  700 : #00848b,
+  800 : #007a81,
+  900 : #00696f,
+  A100 : #9ef8ff,
+  A200 : #6bf4ff,
+  A400 : #38f0ff,
+  A700 : #1fefff,
   contrast: (
     50 : #000000,
     100 : #000000,
     200 : #000000,
     300 : #000000,
-    400 : #ffffff,
+    400 : #000000,
     500 : #ffffff,
     600 : #ffffff,
     700 : #ffffff,
@@ -39,8 +39,8 @@ $kyd-gui-primary: mat-palette((
     900 : #ffffff,
     A100 : #000000,
     A200 : #000000,
-    A400 : #ffffff,
-    A700 : #ffffff,
+    A400 : #000000,
+    A700 : #000000,
   )
 ));
 $kyd-gui-accent: mat-palette($mat-blue-grey);
@@ -79,7 +79,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .primary-color {
-  color: #0028A5;
+  color: #00979d;
 }
 
 .mat-toolbar {

@@ -8,7 +8,7 @@
       </div>
       <div class="row m-0 pb-4">
         <span class="small text-center w-100">
-          To add a device, enter the following details. A Identity Smart Contract for the device will then be deployed to the Ethereum Network from your account.
+          To add a device, give it a name of your choice and enter the Device_ID_Number included in your invoice. An Identity Smart Contract for the device will then be deployed to the Ethereum Network from your current MetaMask account.
         </span>
       </div>
       <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
@@ -23,24 +23,9 @@
         <div class="row m-0">
           <mat-form-field appearance="outline">
             <mat-label>
-              Manufacturer
+              Device_ID_Number
             </mat-label>
-            <mat-select formControlName="make">
-              <mat-option value="Arduino">Arduino</mat-option>
-              <mat-option value="Raspberry Pi">Raspberry Pi</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="row m-0">
-          <mat-form-field appearance="outline">
-            <mat-label>
-              Model
-            </mat-label>
-            <mat-select formControlName="model">
-              <mat-option *ngFor="let model of arduinoModels" [value]="model">
-                Arduino {{model}}
-              </mat-option>
-            </mat-select>
+            <input matInput formControlName="id">
           </mat-form-field>
         </div>
         <div class="row m-0 pt-4">

@@ -21,11 +21,6 @@ export class DeviceOverviewComponent implements OnInit {
     });
 
     this.devices = await this.deviceService.getAll();
-
     this.loading = false;
-  }
-
-  async verify(device: Device) {
-    await this.deviceService.verify(device);
   }
 }

@@ -1,0 +1,49 @@
+<div class="container p-0 pt-3">
+  <mat-card class="login-card">
+    <div *ngIf="!registered">
+      <div class="row m-0 pb-4">
+        <h3 class="m-auto">
+          Device Initialization
+        </h3>
+      </div>
+      <div class="row m-0 pb-4">
+        <span class="small text-center w-100">
+          To initialize a device, enter the following details.
+        </span>
+      </div>
+      <form [formGroup]="device" (ngSubmit)="onSubmit()" class="slim-form-field">
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Model
+            </mat-label>
+            <mat-select formControlName="model">
+              <mat-option *ngFor="let model of models" [value]="model">
+                Arduino {{model}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row m-0">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              PUF Data
+            </mat-label>
+            <input matInput formControlName="pufData">
+          </mat-form-field>
+        </div>
+        <div class="row m-0 pt-4 justify-content-end">
+          <button mat-flat-button
+                  class="pl-4 pr-4"
+                  color="primary"
+                  type="submit">Next</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="registered">
+      <h3 class="w-100 text-center m-0">
+        Device successfully registered.
+      </h3>
+    </div>
+  </mat-card>
+</div>

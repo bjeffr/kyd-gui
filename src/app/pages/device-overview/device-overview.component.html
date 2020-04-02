@@ -14,21 +14,23 @@
     <mat-accordion>
       <mat-expansion-panel class="mat-elevation-z0" *ngFor="let device of devices; let i = index">
         <mat-expansion-panel-header>
-          <mat-panel-title id="expansion-header">
-            <div id="expansion-title" class="flex-fill">
-              {{device.name}}
+          <mat-panel-title>
+            <div class="row m-0 flex-fill vertical-align-center">
+              <div id="expansion-title">
+                {{device.name}}
+              </div>
+              <div *ngIf="!device.claims" id="status-red" class="ml-4">
+                Unverified
+              </div>
+              <div *ngIf="device.claims" id="status-green" class="ml-4">
+                Verified
+              </div>
             </div>
             <button mat-flat-button
                     *ngIf="!device.claims"
                     class="pl-4 pr-4 mr-3"
                     color="primary"
-                    (click)="verify(device)">Verify device</button>
-            <div *ngIf="!device.claims" id="status-red" class=" ml-4 mr-4">
-              Unverified
-            </div>
-            <div *ngIf="device.claims" id="status-green" class="ml-4 mr-4">
-              Verified
-            </div>
+                    [routerLink]="'devices/verify/'.concat(device.id)">Verify device</button>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <app-device-details [device]="device"></app-device-details>
@@ -37,7 +39,7 @@
   </div>
   <div *ngIf="!devices">
     <div class="row m-0 pt-5 pb-2">
-      <h3 class="text-center w-100 pt-5">
+      <h3 class="text-center w-100">
         You have no registered devices!
       </h3>
     </div>

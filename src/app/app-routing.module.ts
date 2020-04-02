@@ -5,6 +5,8 @@ import {LoginComponent} from './pages/login/login.component';
 import {DeviceOverviewComponent} from './pages/device-overview/device-overview.component';
 import {DeviceRegistrationComponent} from './pages/device-registration/device-registration.component';
 import {UserRegistrationComponent} from './pages/user-registration/user-registration.component';
+import {DeviceCreationComponent} from './pages/device-creation/device-creation.component';
+import {DeviceVerificationComponent} from './pages/device-verification/device-verification.component';
 
 
 const appRoutes: Routes = [
@@ -23,9 +25,16 @@ const appRoutes: Routes = [
     canActivate: [UserGuard]
   },
   {
+    path: 'devices/verify/:id',
+    component: DeviceVerificationComponent },
+  {
     path: 'devices/register',
     component: DeviceRegistrationComponent,
     canActivate: [UserGuard]
+  },
+  {
+    path: 'devices/create',
+    component: DeviceCreationComponent
   }
 ];
 

@@ -18,6 +18,10 @@ export class DeviceService {
   constructor(@Inject(WEB3) private web3: Web3,
               private http: HttpClient) { }
 
+  create(device: FormGroup) {
+    return this.http.post(environment.kydService.concat('devices/create'), device.value);
+  }
+
   async register(device: FormGroup) {
     const accounts = await this.web3.eth.getAccounts();
     const abi = contract.abi;
@@ -29,8 +33,8 @@ export class DeviceService {
       .send({ from: accounts[0], gas: 3000000 });
 
     device.addControl('account', new FormControl(accounts[0]));
-    device.addControl('address', new FormControl(result.options.address));
-    return await this.http.post('https://puf.dev.eng.c-alm.ch/devices/register', device.value).toPromise();
+    device.addControl('contract', new FormControl(result.options.address));
+    return await this.http.patch(environment.kydService.concat('devices/register'), device.value).toPromise();
   }
 
   async getAll() {
@@ -39,11 +43,13 @@ export class DeviceService {
       account: accounts[0]
     };
 
-    const devices = await this.http.post<Array<Device>>('https://puf.dev.eng.c-alm.ch/devices', requestBody).toPromise();
+    const devices = await this.http.post<Array<Device>>(environment.kydService.concat('devices'), requestBody).toPromise();
+    if (!devices) { return; }
 
     for (const device of devices) {
+      device.account = accounts[0];
       // @ts-ignore
-      const deviceContract = new this.web3.eth.Contract(contract.abi, device.address);
+      const deviceContract = new this.web3.eth.Contract(contract.abi, device.contract);
       const kydClaims = await deviceContract.methods.getClaimIdsByType(8).call();
       for (const claimId of kydClaims) {
         const value = await deviceContract.methods.getClaim(claimId).call();
@@ -68,25 +74,27 @@ export class DeviceService {
     return devices;
   }
 
-  async verify(device: Device) {
-    const data = this.web3.utils.asciiToHex(JSON.stringify(device));
-    const hashedData = this.web3.utils.soliditySha3(device.address, 8, data);
-
-    const signature = this.web3.eth.accounts.sign(hashedData, environment.contractAddress);
-
-    // @ts-ignore
-    const deviceContract = new this.web3.eth.Contract(contract.abi, device.address);
-    const addClaimABI = deviceContract.methods.addClaim(8, 1, environment.contractAddress, signature.signature, data, 'https://www.uzh.ch/')
-      .encodeABI();
-
-    const accounts = await this.web3.eth.getAccounts();
-    return deviceContract.methods.execute(
-      device.address,
-      0,
-      addClaimABI,
-    ).send({
-      gas: 4612388,
-      from: accounts[0],
-    });
+  async verify(device: FormGroup) {
+    const deviceContract = await this.http.post<string>(environment.kydService.concat('devices/verify'), device.value).toPromise();
+    // const data = this.web3.utils.asciiToHex(JSON.stringify(device));
+    // const hashedData = this.web3.utils.soliditySha3(device.contract, 8, data);
+    //
+    // const signature = this.web3.eth.accounts.sign(hashedData, environment.contractAddress);
+    //
+    // // @ts-ignore
+    // const deviceContract = new this.web3.eth.Contract(contract.abi, device.contract);
+    // const addClaimABI = deviceContract.methods.addClaim(8, 1, environment.contractAddress, signature.signature, data,
+    //   'https://www.arduino.cc/');
+    //   .encodeABI();
+    //
+    // const accounts = await this.web3.eth.getAccounts();
+    // return deviceContract.methods.execute(
+    //   device.contract,
+    //   0,
+    //   addClaimABI,
+    // ).send({
+    //   gas: 4612388,
+    //   from: accounts[0],
+    // });
   }
 }

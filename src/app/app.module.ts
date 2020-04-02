@@ -15,10 +15,11 @@ import {MatExpansionModule, MatMenuModule, MatProgressBarModule, MatProgressSpin
 import {DeviceRegistrationComponent} from './pages/device-registration/device-registration.component';
 import {LoginComponent} from './pages/login/login.component';
 import {DeviceOverviewComponent} from './pages/device-overview/device-overview.component';
-import {DeviceDetailsComponent} from './pages/device-overview/components/device-details/device-details.component';
+import {DeviceDetailsComponent} from './pages/device-overview/device-details/device-details.component';
 import {DeviceVerificationComponent} from './pages/device-verification/device-verification.component';
 import {UserRegistrationComponent} from './pages/user-registration/user-registration.component';
 import {ParticularsComponent} from './pages/user-registration/components/particulars/particulars.component';
+import { DeviceCreationComponent } from './pages/device-creation/device-creation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ParticularsComponent} from './pages/user-registration/components/particu
     DeviceDetailsComponent,
     DeviceVerificationComponent,
     UserRegistrationComponent,
-    ParticularsComponent
+    ParticularsComponent,
+    DeviceCreationComponent
   ],
     imports: [
         BrowserModule,
