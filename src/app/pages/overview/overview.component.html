@@ -7,8 +7,27 @@
   <mat-spinner color="primary" class="m-auto"></mat-spinner>
 </div>
 <div *ngIf="!loading" class="container p-3">
-  <div *ngIf="devices">
+  <div *ngIf="user">
     <h3 class="pl-4 pb-2">
+      User
+    </h3>
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="row m-0 flex-fill vertical-align-center">
+              <div class="expansion-title">
+                {{user.firstName}} {{user.lastName}}
+              </div>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-user-details [user]="user"></app-user-details>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div *ngIf="devices">
+    <h3 class="pl-4 pt-5 pb-2">
       Registered Devices
     </h3>
     <mat-accordion>
@@ -16,21 +35,21 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="row m-0 flex-fill vertical-align-center">
-              <div id="expansion-title">
+              <div class="expansion-title">
                 {{device.name}}
               </div>
-              <div *ngIf="!device.claims" id="status-red" class="ml-4">
+              <div *ngIf="!device.verified" class="status-red ml-4">
                 Unverified
               </div>
-              <div *ngIf="device.claims" id="status-green" class="ml-4">
+              <div *ngIf="device.verified" class="status-green ml-4">
                 Verified
               </div>
             </div>
             <button mat-flat-button
-                    *ngIf="!device.claims"
+                    *ngIf="!device.verified"
                     class="pl-4 pr-4 mr-3"
                     color="primary"
-                    [routerLink]="'devices/verify/'.concat(device.id)">Verify device</button>
+                    [routerLink]="'devices/'.concat(device.id).concat('/verify')">Verify device</button>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <app-device-details [device]="device"></app-device-details>

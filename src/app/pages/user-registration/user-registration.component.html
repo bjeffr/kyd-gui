@@ -99,6 +99,7 @@
           <button mat-flat-button
                   class="pl-4 pr-4"
                   color="primary"
+                  [disabled]="user.invalid"
                   type="submit">Next</button>
         </div>
       </form>
@@ -111,7 +112,7 @@
       </div>
       <div class="row m-0 pb-5">
         <span class="small text-center w-100">
-          This can take up to a minute.
+          This can take a couple of minutes. During this process you will have to approve 3 transactions using your MetaMask account.
         </span>
       </div>
       <div class="row m-0">

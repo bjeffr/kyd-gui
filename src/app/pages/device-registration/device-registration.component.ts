@@ -27,8 +27,8 @@ export class DeviceRegistrationComponent implements OnInit {
       name: [null, Validators.required],
       id: [null, Validators.compose([
         Validators.required,
-        Validators.min(10),
-        Validators.max(10)])]
+        Validators.minLength(10),
+        Validators.maxLength(10)])]
     });
   }
 

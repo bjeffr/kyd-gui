@@ -3,12 +3,12 @@
   align-items: center;
 }
 
-#expansion-title {
+.expansion-title {
   font-size: 15pt;
   font-weight: 600;
 }
 
-#status-green {
+.status-green {
   width: 100px;
   background-color: #DFF0D8;
   font-weight: 500;
@@ -18,7 +18,7 @@
   padding: 3px;
 }
 
-#status-red {
+.status-red {
   width: 100px;
   background-color: #F2DEDE;
   font-weight: 500;

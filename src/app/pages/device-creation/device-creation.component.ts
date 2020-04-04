@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeviceService} from '../../services/device.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-device-creation',
@@ -28,11 +27,15 @@ export class DeviceCreationComponent implements OnInit {
       model: [null, Validators.required],
       pufData: [null, Validators.compose([
         Validators.required,
-        Validators.min(32),
-        Validators.max(32)])],
+        Validators.minLength(64),
+        Validators.maxLength(64)])],
     });
 
     this.models.sort(((a, b) => a < b ? -1 : 1));
+
+    this.device.valueChanges.subscribe(() => {
+      console.log(this.device);
+    });
   }
 
   onSubmit() {

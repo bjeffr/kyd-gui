@@ -25,6 +25,11 @@ export class UserRegistrationComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    // @ts-ignore
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload();
+    });
+
     this.user = this.fb.group({
       firstName: [null, Validators.compose([
         Validators.required,
@@ -79,9 +84,9 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user.value);
-    this.userService.register(this.user).subscribe(value => {
-      console.log(value);
+    this.deploying = true;
+    this.userService.register(this.user).then(() => {
+      this.router.navigate(['']).then();
     });
   }
 }

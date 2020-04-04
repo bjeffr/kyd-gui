@@ -1,6 +1,6 @@
 <div class="container p-0 pt-3">
   <mat-card class="login-card">
-    <div *ngIf="!deploying">
+    <div *ngIf="entry">
       <div class="row m-0 pb-4">
         <h3 class="m-auto">
           Device Verification
@@ -32,6 +32,7 @@
             <button mat-flat-button
                     class="float-right pl-4 pr-4"
                     color="primary"
+                    [disabled]="device.invalid"
                     type="submit">Next</button>
           </div>
         </div>
@@ -45,11 +46,34 @@
       </div>
       <div class="row m-0 pb-5">
         <span class="small text-center w-100">
-          This can take up to a minute.
+          This can take up to a minute. During this process you will have to approve a transaction using your MetaMask account.
         </span>
       </div>
       <div class="row m-0">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+    <div *ngIf="failed">
+      <div class="row m-0 pb-4">
+        <h3 class="m-auto">
+          Verification failed
+        </h3>
+      </div>
+      <div class="row m-0 pb-4">
+        <span class="small text-center w-100">
+          Your device could not be verified. Please check that you have copied the PUF Data correctly from Arduino Create and that you connected the correct device.
+        </span>
+      </div>
+      <div class="row m-0 pt-2">
+        <button mat-button
+                class="p-0"
+                color="primary"
+                routerLink="">Cancel</button>
+        <div class="flex-fill"></div>
+        <button mat-flat-button
+                class="float-right pl-4 pr-4"
+                color="primary"
+                (click)="failed = false; entry = true;">Retry</button>
       </div>
     </div>
   </mat-card>

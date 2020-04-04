@@ -7,6 +7,7 @@ export class Device {
   contract: string;
   name: string;
   model: string;
+  verified: boolean;
   keys: Array<Key>;
   claims: Array<Claim>;
 }

@@ -1,0 +1,37 @@
+<div class="row m-0">
+  <div class="col-5 p-0">
+    <p class="title">Details</p>
+    <div class="mb-1">
+      <span>Address</span>
+      <a class="small primary-color float-right" target="_blank" rel="noopener noreferrer" [href]="url.concat(user.contract)">{{user.contract}}</a>
+    </div>
+    <div class="mb-1">
+      <span>Owner</span>
+      <a class="small primary-color float-right" target="_blank" rel="noopener noreferrer" [href]="url.concat(user.account)">{{user.account}}</a>
+    </div>
+  </div>
+  <div class="col- p-0 pl-5">
+    <p class="title">Keys</p>
+    <ul class="pl-3" *ngFor="let key of user.keys; let i = index">
+      <li class="mb-1" *ngIf="key.purpose == 1">Management Key</li>
+      <li class="mb-1" *ngIf="key.purpose == 2">Execution Key</li>
+      <li class="mb-1" *ngIf="key.purpose == 3">Claim Key</li>
+    </ul>
+  </div>
+  <div class="col p-0 pl-5">
+    <p class="title">Claims</p>
+    <ul class="pl-3" *ngFor="let claim of user.claims; let i = index">
+      <li class="mb-1">
+        <div class="mb-1" *ngIf="claim.claimType == 7">
+          KYC Claim
+        </div>
+        <div class="mb-1">
+          <a class="mb-1 primary-color" target="_blank" rel="noopener noreferrer" [href]="url.concat(claim.issuer)">Issuer Address</a>
+        </div>
+        <div class="mb-1">
+          <a class="mb-1 primary-color" target="_blank" rel="noopener noreferrer" [href]="claim.uri">{{claim.uri}}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

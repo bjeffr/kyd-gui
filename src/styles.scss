@@ -43,7 +43,7 @@ $kyd-gui-primary: mat-palette((
     A700 : #000000,
   )
 ));
-$kyd-gui-accent: mat-palette($mat-blue-grey);
+$kyd-gui-accent: mat-palette($mat-orange);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $kyd-gui-theme: mat-light-theme($kyd-gui-primary, $kyd-gui-accent);

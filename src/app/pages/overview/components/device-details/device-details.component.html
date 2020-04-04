@@ -33,8 +33,11 @@
         <div class="mb-1" *ngIf="claim.claimType == 8">
           KYD Claim
         </div>
+        <div class="mb-1" *ngIf="claim.claimType == 9">
+          Ownership Claim
+        </div>
         <div class="mb-1">
-          <a class="mb-1 primary-color" target="_blank" rel="noopener noreferrer" [href]="url.concat(claim.issuer)">Issuer</a>
+          <a class="mb-1 primary-color" target="_blank" rel="noopener noreferrer" [href]="url.concat(claim.issuer)">Issuer Address</a>
         </div>
         <div class="mb-1">
           <a class="mb-1 primary-color" target="_blank" rel="noopener noreferrer" [href]="claim.uri">{{claim.uri}}</a>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Device} from '../../../models/device.model';
-import {environment} from '../../../../environments/environment';
+import {Device} from '../../../../models/device.model';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-device-details',
@@ -14,6 +14,8 @@ export class DeviceDetailsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.device);
+  }
 
 }
