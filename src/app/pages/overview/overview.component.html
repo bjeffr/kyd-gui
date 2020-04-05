@@ -16,9 +16,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="row m-0 flex-fill vertical-align-center">
-              <div class="expansion-title">
-                {{user.firstName}} {{user.lastName}}
-              </div>
+              <h4>{{user.firstName}} {{user.lastName}}</h4>
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -35,9 +33,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="row m-0 flex-fill vertical-align-center">
-              <div class="expansion-title">
-                {{device.name}}
-              </div>
+              <h4>{{device.name}}</h4>
               <div *ngIf="!device.verified" class="status-red ml-4">
                 Unverified
               </div>
@@ -49,7 +45,7 @@
                     *ngIf="!device.verified"
                     class="pl-4 pr-4 mr-3"
                     color="primary"
-                    [routerLink]="'devices/'.concat(device.id).concat('/verify')">Verify device</button>
+                    [routerLink]="'devices/'.concat(device.id).concat('/verify/instructions')">Verify device</button>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <app-device-details [device]="device"></app-device-details>

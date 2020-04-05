@@ -19,6 +19,7 @@ import { DeviceCreationComponent } from './pages/device-creation/device-creation
 import {OverviewComponent} from './pages/overview/overview.component';
 import {DeviceDetailsComponent} from './pages/overview/components/device-details/device-details.component';
 import {UserDetailsComponent} from './pages/overview/components/user-details/user-details.component';
+import { VerificationInstructionsComponent } from './pages/verification-instructions/verification-instructions.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {UserDetailsComponent} from './pages/overview/components/user-details/use
     DeviceVerificationComponent,
     UserRegistrationComponent,
     DeviceCreationComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    VerificationInstructionsComponent
   ],
     imports: [
         BrowserModule,
