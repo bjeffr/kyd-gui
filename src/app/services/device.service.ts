@@ -61,11 +61,7 @@ export class DeviceService {
 
   async getAll() {
     const accounts = await this.web3.eth.getAccounts();
-    const requestBody = {
-      account: accounts[0]
-    };
-
-    const devices = await this.http.post<Array<Device>>(environment.kydService.concat('devices'), requestBody).toPromise();
+    const devices = await this.http.get<Array<Device>>(environment.kydService.concat('devices/user/').concat(accounts[0])).toPromise();
     if (!devices) { return; }
 
     for (const device of devices) {
@@ -111,7 +107,7 @@ export class DeviceService {
     const isValid = JSON.parse(await this.http.post<string>(environment.kydService.concat('devices/verify'), form.value).toPromise());
     if (isValid === false) { return false; }
 
-    const device = await this.http.post<Device>(environment.kydService.concat('device'), form.value).toPromise();
+    const device = await this.http.get<Device>(environment.kydService.concat('device/').concat(form.value.id)).toPromise();
 
     const HDWalletProvider = require('@truffle/hdwallet-provider');
     const kydProvider = new HDWalletProvider(

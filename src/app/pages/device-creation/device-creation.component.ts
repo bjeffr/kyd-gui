@@ -32,10 +32,6 @@ export class DeviceCreationComponent implements OnInit {
     });
 
     this.models.sort(((a, b) => a < b ? -1 : 1));
-
-    this.device.valueChanges.subscribe(() => {
-      console.log(this.device);
-    });
   }
 
   onSubmit() {

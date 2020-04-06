@@ -14,8 +14,6 @@ export class DeviceDetailsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.device);
-  }
+  ngOnInit() { }
 
 }

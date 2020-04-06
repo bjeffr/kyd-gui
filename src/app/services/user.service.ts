@@ -64,11 +64,7 @@ export class UserService {
 
   async get() {
     const accounts = await this.web3.eth.getAccounts();
-    const requestBody = {
-      account: accounts[0]
-    };
-
-    const user = await this.http.post(environment.kydService.concat('user'), requestBody).toPromise();
+    const user = await this.http.get(environment.kydService.concat('user/').concat(accounts[0])).toPromise();
     const keys = [];
     const claims = [];
 
@@ -105,11 +101,7 @@ export class UserService {
 
   async isRegistered() {
     const accounts = await this.web3.eth.getAccounts();
-    const requestBody = {
-      account: accounts[0]
-    };
-
-    const user = await this.http.post(environment.kydService.concat('user'), requestBody).toPromise();
+    const user = await this.http.get(environment.kydService.concat('user/').concat(accounts[0])).toPromise();
     return !!user;
   }
 }

@@ -25,7 +25,6 @@ export class OverviewComponent implements OnInit {
     });
 
     this.user = await this.userService.get();
-    console.log(this.user);
     this.devices = await this.deviceService.getAll();
     this.loading = false;
   }
