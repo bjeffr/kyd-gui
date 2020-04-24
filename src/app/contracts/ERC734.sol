@@ -15,8 +15,8 @@ abstract contract ERC734 {
     event KeysRequiredChanged(uint256 purpose, uint256 number);
 
     struct Key {
-        uint256 purpose; //e.g., MANAGEMENT_KEY = 1, EXECUTION_KEY = 2, etc.
-        uint256 keyType; // e.g. 1 = ECDSA, 2 = RSA, etc.
+        uint256 purpose; // e.g. MANAGEMENT = 1, CLAIM = 3
+        uint256 keyType; // e.g. ECDSA = 1, RSA = 2
         bytes32 key;
     }
 

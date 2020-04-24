@@ -24,11 +24,15 @@ export class DeviceRegistrationComponent implements OnInit {
     });
 
     this.device = this.fb.group({
-      name: [null, Validators.required],
+      name: [null, Validators.compose([
+        Validators.required,
+        Validators.maxLength(255)
+      ])],
       id: [null, Validators.compose([
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(10)])]
+        Validators.maxLength(10)
+      ])]
     });
   }
 

@@ -8,10 +8,10 @@ abstract contract ERC735 {
     event ClaimChanged(bytes32 indexed claimId, uint256 indexed claimType, uint256 scheme, address indexed issuer, bytes signature, bytes data, string uri);
 
     struct Claim {
-        uint256 claimType;
-        uint256 scheme;
+        uint256 claimType; // e.g. KYC = 7, KYD = 8
+        uint256 scheme; // e.g. ECDSA = 1, RSA = 2
         address issuer;
-        bytes signature;
+        bytes signature; // this.address + topic + data
         bytes data;
         string uri;
     }

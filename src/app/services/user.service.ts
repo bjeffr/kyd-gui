@@ -22,13 +22,16 @@ export class UserService {
     const abi = contract.abi;
     const bytecode = '0x' + contract.evm.bytecode.object;
 
+    // Deploys an identity smart contract from accounts[0].
     // @ts-ignore
     const result = await new this.web3.eth.Contract(abi)
       .deploy({ data: bytecode })
       .send({ from: accounts[0], gas: 3000000 });
 
-    await result.methods.addKey(this.web3.utils.keccak256(result.options.address), 3, 1)
-      .send({ from: accounts[0], gas: 3000000 });
+    // Adds a claim key to the deployed SC.
+    await result.methods.addKey(
+      this.web3.utils.keccak256(result.options.address), 3, 1
+    ).send({ from: accounts[0], gas: 3000000 });
 
     user.addControl('contract', new FormControl(result.options.address));
 
@@ -39,22 +42,30 @@ export class UserService {
     );
     // @ts-ignore
     const kydWeb3 = new Web3(kydProvider);
-    const data = kydWeb3.utils.asciiToHex(JSON.stringify(user.value));
-    const hashedData = kydWeb3.utils.soliditySha3(result.options.address, 7, data);
-    const signature = await kydWeb3.eth.sign(hashedData, environment.walletAddress);
 
-    // @ts-ignore
-    const addClaimABI = result.methods.addClaim(7, 1, environment.contractAddress, signature, data,
-      'https://www.arduino.cc/')
-      .encodeABI();
+    // Creates a signature from the contract's address.
+    const data = this.web3.utils.asciiToHex(
+      [result.options.address, 'verified']
+        .join(' ')
+    );
+    const hashedData = this.web3.utils.soliditySha3(
+      result.options.address, 7, data
+    );
+    const signature = await kydWeb3.eth.sign(
+      hashedData, environment.walletAddress
+    );
 
+    // Creates a KYC claim from the signature.
+    const addClaimABI = result.methods.addClaim(
+      7, 1, environment.contractAddress,
+      signature, data, 'https://www.arduino.cc/'
+    ).encodeABI();
+
+    // Adds the KYC claim to the identity smart contract.
     await result.methods.execute(
-      result.options.address,
-      0,
-      addClaimABI,
+      result.options.address, 0, addClaimABI
     ).send({
-      gas: 4612388,
-      from: accounts[0],
+      gas: 4612388, from: accounts[0]
     });
 
     user.addControl('account', new FormControl(accounts[0]));

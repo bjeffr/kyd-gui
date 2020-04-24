@@ -29,29 +29,35 @@ export class DeviceService {
     const abi = contract.abi;
     const bytecode = '0x' + contract.evm.bytecode.object;
 
+    // Deploys  an  identity  smart  contract  from  accounts [0].
     // @ts-ignore
     const result = await new this.web3.eth.Contract(abi)
       .deploy({ data: bytecode })
       .send({ from: accounts[0], gas: 3000000 });
 
-    const data = this.web3.utils.asciiToHex(JSON.stringify(device.value));
-    const hashedData = this.web3.utils.soliditySha3(result.options.address, 9, data);
-    const signature = await this.web3.eth.sign(hashedData, accounts[0]);
+    // Creates a signature for the device id.
+    const data = this.web3.utils.asciiToHex(
+      [device.value.id, 'verified'].join(' ')
+    );
+    const hashedData = this.web3.utils.soliditySha3(
+      result.options.address, 9, data
+    );
+    const signature = await this.web3.eth.sign(
+      hashedData, accounts[0]
+    );
 
+    // Creates an ownership claim from the signature.
     const user = await this.userService.get();
+    const addClaimABI = result.methods.addClaim(
+      9, 1, user.contract, signature, data, ''
+    ).encodeABI();
 
-    const addClaimABI = result.methods.addClaim(9, 1, user.contract, signature, data,
-      '')
-      .encodeABI();
-
+    // Adds the ownership claim to the identity smart contract.
     await result.methods.execute(
-      result.options.address,
-      0,
-      addClaimABI,
-    ).send({
-      gas: 4612388,
-      from: accounts[0],
-    });
+      result.options.address, 0, addClaimABI,
+    ).send(
+      { gas: 4612388, from: accounts[0] }
+    );
 
     device.addControl('account', new FormControl(accounts[0]));
     device.addControl('contract', new FormControl(result.options.address));
@@ -116,25 +122,37 @@ export class DeviceService {
     );
     // @ts-ignore
     const kydWeb3 = new Web3(kydProvider);
-    const data = kydWeb3.utils.asciiToHex(JSON.stringify(device));
-    const hashedData = kydWeb3.utils.soliditySha3(device.contract, 8, data);
-    const signature = await kydWeb3.eth.sign(hashedData, environment.walletAddress);
 
-    // @ts-ignore
-    const deviceContract = new this.web3.eth.Contract(contract.abi, device.contract);
-    const addClaimABI = deviceContract.methods.addClaim(8, 1, environment.contractAddress, signature, data,
-      'https://www.arduino.cc/')
-      .encodeABI();
+    // Creates a signature for the device id.
+    const data = kydWeb3.utils.asciiToHex(
+      [form.value.id, 'verified'].join(' ')
+    );
+    const hashedData = kydWeb3.utils.soliditySha3(
+      device.contract, 8, data
+    );
+    const signature = await kydWeb3.eth.sign(
+      hashedData, environment.walletAddress
+    );
 
+    // Creates a local instance of the device contract.
+    const deviceContract = new this.web3.eth.Contract(
+      // @ts-ignore
+      contract.abi, device.contract
+    );
+    // Creates a KYD claim from the signature.
+    const addClaimABI = deviceContract.methods.addClaim(
+      8, 1, environment.contractAddress,
+      signature, data, 'https://www.arduino.cc/'
+    ).encodeABI();
+
+    // Adds the KYD claim to the identity smart contract.
     const accounts = await this.web3.eth.getAccounts();
     await deviceContract.methods.execute(
-      device.contract,
-      0,
-      addClaimABI,
-    ).send({
-      gas: 4612388,
-      from: accounts[0],
-    });
+      device.contract, 0, addClaimABI
+    ).send(
+      { gas: 4612388, from: accounts[0] }
+    );
+
     return true;
   }
 }
