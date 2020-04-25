@@ -6,10 +6,10 @@ export const environment = {
   production: false,
   kydService: 'http://127.0.0.1:8000/',
   etherScan: 'https://rinkeby.etherscan.io/address/',
-  mnemonic: 'sadness artwork pave divert nephew victory spray famous lock weapon bird unusual',
   provider: 'https://rinkeby.infura.io/v3/056404dae4ee477e94351c46903b0ade',
-  walletAddress: '0xFc869DE19bEfb3DC9d71b4b65ad602990AC2831d',
-  contractAddress: '0xEd083e4c9155abF99D4d650134b114fF49603744'
+  mnemonic: '',
+  walletAddress: '',
+  contractAddress: ''
 };
 
 /*

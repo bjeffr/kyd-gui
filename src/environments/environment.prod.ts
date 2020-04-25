@@ -1,6 +1,9 @@
 export const environment = {
   production: true,
+  kydService: 'http://127.0.0.1:8000/',
   etherScan: 'https://rinkeby.etherscan.io/address/',
-  walletAddress: '0xFc869DE19bEfb3DC9d71b4b65ad602990AC2831d',
-  contractAddress: '0xEd083e4c9155abF99D4d650134b114fF49603744'
+  provider: 'https://rinkeby.infura.io/v3/056404dae4ee477e94351c46903b0ade',
+  mnemonic: '',
+  walletAddress: '',
+  contractAddress: ''
 };
