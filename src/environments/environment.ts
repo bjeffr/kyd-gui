@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  kydService: 'https://puf.dev.eng.c-alm.ch/',
+  kydService: 'http://127.0.0.1:8000/',
   etherScan: 'https://rinkeby.etherscan.io/address/',
   mnemonic: 'sadness artwork pave divert nephew victory spray famous lock weapon bird unusual',
   provider: 'https://rinkeby.infura.io/v3/056404dae4ee477e94351c46903b0ade',
