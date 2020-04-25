@@ -27,7 +27,7 @@ const deploy = async () => {
   await result.methods.addKey(web3.utils.keccak256(result.options.address), 3, 1)
     .send({ from: accounts[0], gas: 3000000 });
 
-  console.log("Contract deployed to:", result.options.address);
+  console.log("SC deployed to:", result.options.address);
 };
 
 deploy();
