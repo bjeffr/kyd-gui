@@ -1,4 +1,6 @@
-# KydGui
+# Design and Prototypical Implementation of an IoT Identification Platform based on Blockchains and Physical Unclonable Functions (PUF)
+Repository containing all the front-end code for my bachelor's thesis<br/>
+Back-end code can be found here: https://github.com/bjeffr/kyd_service
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
